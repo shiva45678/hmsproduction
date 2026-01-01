@@ -1,23 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Newtons OPD Zero</title> <!-- Updated Title -->
-    <meta name="description" content="Newtons OPD Zero: Free, mobile-first hospital management software with AI-powered OPD assistant & treatment planner. Features admin controls, role management, money flow analytics, and inventory management." />
-    <!-- The manifest link is injected by vite-plugin-pwa -->
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="OPD Zero">
-    <!-- Razorpay Checkout Script -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script type="module" crossorigin src="/assets/index-BSrfOVcl.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-IRCNZW1A.css">
-  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
-  <body>
-    <div id="root"></div>
-    <div id="modal-root"></div> <!-- Added portal target for modals -->
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newtons Ai HMS</title> <!-- Updated Title -->
+  <meta name="description"
+    content="Newtons Ai HMS: Free, mobile-first hospital management software with AI-powered OPD assistant & treatment planner. Features admin controls, role management, money flow analytics, and inventory management." />
+  <!-- The manifest link is injected by vite-plugin-pwa -->
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ai HMS">
+  <!-- Razorpay Checkout Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script type="module" crossorigin src="/assets/index-BR0OES6U.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DYla7yf_.css">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+
+<body>
+  <div id="root">
+    <style>
+      body {
+        margin: 0;
+        background-color: #f8f9fa;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #111827;
+        }
+      }
+
+      .initial-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .initial-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #e1e4e8;
+        border-top-color: #007bff;
+        border-radius: 50%;
+        animation: initial-spin 1s linear infinite;
+      }
+
+      @keyframes initial-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <div class="initial-loader">
+      <div class="initial-spinner"></div>
+    </div>
+  </div>
+  <div id="modal-root"></div> <!-- Added portal target for modals -->
+</body>
+
 </html>
