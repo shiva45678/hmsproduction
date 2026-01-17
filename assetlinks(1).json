@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "in.newtons.hms.twaapp",
+      "sha256_cert_fingerprints": [
+        "77:A1:C8:3B:98:54:78:74:C9:4F:3D:08:1D:22:6A:0D:9C:88:F7:BE:37:A7:5A:32:8B:1F:2F:9F:6A:44:AD:55"
+      ]
+    }
+  }
+]
