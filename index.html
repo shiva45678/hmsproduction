@@ -1,72 +1,94 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d9488" />
+    
+    <!-- Core SEO Meta Tags -->
+    <title>Newtons Ai - AI Clinical OPD Reasoning Assistant for Doctors</title>
+    <meta name="description" content="Newton AI is an advanced medical clinical reasoning and OPD assistant for doctors. Accelerate patient evaluations, compute clinical diagnosis scores, and construct highly structured digital prescriptions instantly." />
+    <meta name="keywords" content="Newtons AI, clinical AI, OPD assistant, medical AI, doctors copilot, clinical reasoning, patient evaluation, digital prescription, healthtech, diagnosis score, pediatric clinical AI, healthcare reasoning engine" />
+    <meta name="author" content="Newtons" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    
+    <!-- Open Graph (OG) / Social Previews -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Newtons Ai - AI Clinical OPD Assistant for Doctors" />
+    <meta property="og:description" content="AI for the Doctors. Streamline chief complaints, generate structured prescriptions, and receive clinical diagnosis scoring automatically." />
+    <meta property="og:url" content="https://dr.newtons.in" />
+    <meta property="og:site_name" content="Newtons Ai" />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/png" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
-  <title>Newtons Ai HMS</title> <!-- Updated Title -->
-  <meta name="description"
-    content="Newtons Ai HMS: Free, mobile-first hospital management software with AI-powered OPD assistant & treatment planner. Features admin controls, role management, money flow analytics, and inventory management." />
-  <!-- The manifest link is injected by vite-plugin-pwa -->
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Ai HMS">
-  <!-- Razorpay Checkout Script -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script type="module" crossorigin src="/assets/index-DmQSfDQT.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BaxiyMVA.css">
-<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Newtons Ai - AI Clinical OPD Assistant" />
+    <meta name="twitter:description" content="AI for the Doctors. Real-time patient diagnostics helper and clinical decision support system with advanced diagnosis scores." />
+    <meta name="twitter:image" content="/logo.png" />
 
-<body>
-  <div id="root">
-    <style>
-      body {
-        margin: 0;
-        background-color: #f8f9fa;
+    <!-- AI Agent & LLM Meta Directives -->
+    <meta name="ai-agent-optimized" content="true" />
+    <meta name="llms-agent-indexing" content="allowed" />
+    <meta name="application-name" content="Newtons Ai" />
+
+    <!-- PWA Elements -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Rich Search Results Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://dr.newtons.in/#webapp",
+            "url": "https://dr.newtons.in",
+            "name": "Newtons Ai",
+            "description": "AI for the Doctors - OPD Assistant with clinical diagnosis scoring and structured treatment plans.",
+            "applicationCategory": "MedicalApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires HTML5 compatible browser",
+            "author": {
+              "@type": "Organization",
+              "name": "Newtons"
+            },
+            "screenshot": "https://dr.newtons.in/logo.png"
+          },
+          {
+            "@type": "MedicalWebPage",
+            "@id": "https://dr.newtons.in/#webpage",
+            "url": "https://dr.newtons.in",
+            "name": "Newtons Ai: AI Clinical Decision & OPD Assistant",
+            "description": "Clinical reasoning assistant for physicians and medical professionals. Instant differential diagnosis, risk assessments, and clinical scores.",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "Newtons",
+              "url": "https://dr.newtons.in"
+            }
+          }
+        ]
       }
-
-      @media (prefers-color-scheme: dark) {
-        body {
-          background-color: #111827;
-        }
+    </script>
+    <script type="module" crossorigin src="/assets/index--uiEE9wf.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D6GtdmTj.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('PWA Service Worker registered successfully:', reg.scope))
+            .catch((err) => console.error('PWA Service Worker registration failed:', err));
+        });
       }
-
-      .initial-loader {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        width: 100vw;
-        font-family: system-ui, -apple-system, sans-serif;
-      }
-
-      .initial-spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #e1e4e8;
-        border-top-color: #007bff;
-        border-radius: 50%;
-        animation: initial-spin 1s linear infinite;
-      }
-
-      @keyframes initial-spin {
-        0% {
-          transform: rotate(0deg);
-        }
-
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
-    <div class="initial-loader">
-      <div class="initial-spinner"></div>
-    </div>
-  </div>
-  <div id="modal-root"></div> <!-- Added portal target for modals -->
-</body>
-
+    </script>
+  </body>
 </html>
+

@@ -1,1 +1,81 @@
-if(!self.define){let e,s={};const i=(i,n)=>(i=new URL(i+".js",n).href,s[i]||new Promise((s=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=s,document.head.appendChild(e)}else e=i,importScripts(i),s()})).then((()=>{let e=s[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e})));self.define=(n,o)=>{const r=e||("document"in self?document.currentScript.src:"")||location.href;if(s[r])return;let l={};const t=e=>i(e,r),d={module:{uri:r},exports:l,require:t};s[r]=Promise.all(n.map((e=>d[e]||t(e)))).then((e=>(o(...e),l)))}}define(["./workbox-5ffe50d4"],(function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"12.png",revision:"dd8338680c28b17ac232827aaa0f3cf5"},{url:"assets/AddPatientPage-CvaX_3Vg.css",revision:null},{url:"assets/AddPatientPage-DNizcaEv.js",revision:null},{url:"assets/EditComplaintPage-BIo95XE6.css",revision:null},{url:"assets/EditComplaintPage-BZ7UoL2o.js",revision:null},{url:"assets/index-BaxiyMVA.css",revision:null},{url:"assets/index-DmQSfDQT.js",revision:null},{url:"index.html",revision:"9331c5661243164adb69010890995248"},{url:"logo old.png",revision:"5854015524e9436a4332465ee0dd6008"},{url:"logo.png",revision:"05d0aa5c731dd23100f2020a1161abaf"},{url:"logo.svg",revision:"d32845d13f7feec95b8c718d4d99d175"},{url:"logo23.png",revision:"9e62c2b97b8f6156b839489da73e6490"},{url:"registerSW.js",revision:"1872c500de691dce40960bb85481de07"},{url:"vite.svg",revision:"8e3a10e157f75ada21ab742c022d5430"},{url:"logo.png",revision:"05d0aa5c731dd23100f2020a1161abaf"},{url:"manifest.webmanifest",revision:"18f064517987f24fcbf36676137bb080"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))}));
+const CACHE_NAME = 'newtons-ai-cache-v1';
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/logo.png',
+  '/manifest.json'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(ASSETS_TO_CACHE);
+    }).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+
+  // Bypass caching for APIs, authentication, hot reload and external services
+  if (
+    url.pathname.startsWith('/api') || 
+    url.hostname.includes('firebase') || 
+    url.hostname.includes('googleapis') ||
+    url.pathname.includes('__vite_ping') ||
+    event.request.method !== 'GET'
+  ) {
+    return;
+  }
+
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        // Fetch a fresh copy in the background and update cache
+        fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse.status === 200) {
+              caches.open(CACHE_NAME).then((cache) => {
+                cache.put(event.request, networkResponse);
+              });
+            }
+          })
+          .catch(() => {});
+        return cachedResponse;
+      }
+
+      return fetch(event.request)
+        .then((networkResponse) => {
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+            return networkResponse;
+          }
+
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+
+          return networkResponse;
+        })
+        .catch(() => {
+          if (event.request.mode === 'navigate') {
+            return caches.match('/');
+          }
+        });
+    })
+  );
+});
