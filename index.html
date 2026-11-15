@@ -22,8 +22,8 @@
       }
     } catch (e) {}
   </script>
-  <script type="module" crossorigin src="/assets/index-BbdkcQkX.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DIlOVi3-.css">
+  <script type="module" crossorigin src="/assets/index-Cmv0qJtr.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-IN80071v.css">
 <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
 
 <body>
@@ -51,12 +51,19 @@
       }
 
       .initial-spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #e1e4e8;
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(0, 123, 255, 0.15);
         border-top-color: #007bff;
         border-radius: 50%;
-        animation: initial-spin 1s linear infinite;
+        animation: initial-spin 0.9s linear infinite;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .initial-spinner {
+          border-color: rgba(59, 130, 246, 0.2);
+          border-top-color: #3b82f6;
+        }
       }
 
       @keyframes initial-spin {
@@ -68,9 +75,16 @@
           transform: rotate(360deg);
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        .initial-spinner {
+          animation: none;
+          border-top-color: currentColor;
+        }
+      }
     </style>
     <div class="initial-loader">
-      <div class="initial-spinner"></div>
+      <div class="initial-spinner" role="status" aria-label="Loading"></div>
     </div>
   </div>
   <div id="modal-root"></div> <!-- Added portal target for modals -->
